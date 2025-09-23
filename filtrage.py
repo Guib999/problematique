@@ -17,15 +17,62 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15.0):
     """
     
     # Code à compléter
+    for i in range(0, len(points)):
+        
+        if points[i]<0.5:
+            points[i] = -1
+        if points[i] > 15:
+            points[i] =15
     
 
 
-    pass
+    return points
 
 
 #===========================================
 # Autres fonctions à compléter...
 #===========================================
 
+def filtre_moyenne(points):
+    points2= []
+    for i in range(0, len(points)):
+        
+        
+        if i == 0 :
+            moyenne= (points[i]+points[i+1])/2
+            points2.append(round(moyenne, 1))
+        elif i == len(points)-1 :
+            moyenne= (points[i]+points[i-1])/2
+            points2.append(round(moyenne, 1))
+        else:
+            moyenne= (points[i]+points[i-1]+points[i+1])/3
+            
+            points2.append(round(moyenne, 1))
 
+
+
+    return points2
+
+def filtre_mediane(points):
+
+    points2=[]
+    for i in range(0, len(points)):
+        if i==0 or i==len(points)-1:
+            points2.append(points[i])
+        else:
+            tmp =[points[i-1], points[i],points[i+1]]
+            for i in range(0, len(tmp)-1): 
+                indexMIN=i
+                for j in range(i+1, len(tmp)):
+                    if tmp[indexMIN]> tmp[j]:
+                        indexMIN= j
+
+                tmp[i], tmp[indexMIN]= tmp[indexMIN],tmp[i]     
+            points2.append(tmp[1])
+
+
+
+    return points2
+
+print(filtre_mediane([1,3,2,4,5,3]))
 
