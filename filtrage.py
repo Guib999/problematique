@@ -7,7 +7,7 @@ Date: jj/mm/aaaa
 
 
 #===========================================
-def filtre_min_max(points, distance_min=0.5, distance_max=15.0):
+def filtre_min_max(points, distance_min, distance_max):
     """
     DESC: Filtre les points en éliminant ceux qui sont hors des bornes min/max.
           Les valeurs inférieures à la borne min sont remplacées par -1.
@@ -22,7 +22,7 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15.0):
         if points[i]<distance_min:
             points[i] = -1
         if points[i] > distance_max:
-            points[i] =15
+            points[i] =distance_max
     
 
 
@@ -74,5 +74,5 @@ def filtre_mediane(points):
 
     return points2
 
-print(filtre_mediane([1,3,2,4,5,3]))
+print(filtre_min_max([1,50,0], 1, 10))
 
