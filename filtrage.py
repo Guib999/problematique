@@ -19,9 +19,9 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15.0):
     # Code à compléter
     for i in range(0, len(points)):
         
-        if points[i]<0.5:
+        if points[i]<distance_min:
             points[i] = -1
-        if points[i] > 15:
+        if points[i] > distance_max:
             points[i] =15
     
 
