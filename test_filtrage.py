@@ -19,13 +19,18 @@ def test_filtre_min_max():
           selon les valeurs minimum et maximum spécifiées 
     """
     
-    # Ne pas vous limiter à un seul test par filtre...
+    
     
     donnees = [1,50,0,-10]
+    donnees2 = [3,3.5,15,0.5,15]
     reponse = [1,10,-1,-1]
+    reponse2=[3,3.5,15,0.5,15]
+
     test = filtrage.filtre_min_max(donnees, 1, 10)
+    test2=filtrage.filtre_min_max(donnees2)
+
     assert test == reponse, f"Erreur: {test} != {reponse}"
-    
+    assert test2 == reponse2, f"Erreur: {test2} != {reponse2}"
     
     
     pass
