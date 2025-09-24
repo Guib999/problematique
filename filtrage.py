@@ -6,7 +6,7 @@ Date: 24/09/2025
 """ 
 
 
-#===========================================
+
 def filtre_min_max(points, distance_min=0.5, distance_max=15):
     """
     DESC: Filtre les points en éliminant ceux qui sont hors des bornes min/max.
@@ -33,7 +33,7 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15):
 
 def filtre_moyenne(points):
     """
-    DESC: Filtre qui change les point pour la moyenne du point en question et de ceux directement avant et après
+    DESC: Filtre qui change les données pour la moyenne de la données en question et de celle directement avant et après
         dans un tableau de données 
           
     RETOUR: Tableau de données filtrées
@@ -44,8 +44,8 @@ def filtre_moyenne(points):
         
         
         if i == 0 :
-            moyenne= (points[i]+points[i+1])/2
-            points2.append(round(moyenne, 1))
+            moyenne= (points[i]+points[i+1])/2              #Considère la différence de calcule entre les données 
+            points2.append(round(moyenne, 1))               #des extrémité et ceux de l'intérieur
         elif i == len(points)-1 :
             moyenne= (points[i-1]+points[i])/2
             points2.append(round(moyenne, 1))
@@ -60,14 +60,14 @@ def filtre_moyenne(points):
 
 def filtre_mediane(points):
     """
-    DESC: Filtre qui change les points pour la mediane du point en question et de ceux directement avant et après
+    DESC: Filtre qui change les données du lidar pour la mediane de la donnée en question et de celle directement avant et après
         dans un tableau de données sauf les valeurs au extrémiter qui reste pareil.
           
     RETOUR: Tableau de données filtrées
     """
     points2=[]
-    for i in range(0, len(points)):
-        if i==0 or i==len(points)-1:
+    for i in range(0, len(points)):                     #Considère la différence d'action entre les données 
+        if i==0 or i==len(points)-1:                    #des extrémité et ceux de l'intérieur
             points2.append(points[i])
         else:
             tmp =[points[i-1], points[i],points[i+1]]
@@ -79,6 +79,11 @@ def filtre_mediane(points):
     return points2
 
 def filtre_bonne_valeur(points):
+    """
+    DESC: Filtre qui retire tout les mauvaises données d'un tableau des données du lidar
+          
+    RETOUR: Tableau de données filtrées
+    """
     bonV =[]
     for p in points:
         if p>-1:

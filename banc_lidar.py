@@ -4,7 +4,7 @@ GRO120: Banc de test lidar
                 
         LES 4 ÉTAPES DE TRAITEMENT ATTENDUES SONT : 
            1. Lire les données d'un fichier texte (entrée)
-           2. Filtrer les données lues (selon choix)
+           2. Filtrer les données lues (selon choix de l'utilisateur)
            3. Écrire les données filtrées dans un fichier texte (sortie)
            4. Afficher les valeurs statistiques des données filtrées valides (>=0)
 
@@ -17,13 +17,18 @@ import filtrage
  
 
 def lire():
-    #print(getcwd())
+    """
+    DESC: Cette fonction permet de lire un document texte des données donné par le lidar.
+        
+          
+    RETOUR: Tableau des données du document
+    """
     nom="exemples/donnees_test.txt"
     point=[]
-    #try:
+    
     doc = open(nom, "r")
     contenu = "a"
-    while contenu !="":
+    while contenu !="":                     
         contenu = doc.readline()
         if contenu !="":
             p = float(contenu[0:len(contenu)-1])
@@ -32,8 +37,7 @@ def lire():
 
     
     doc.close()
-    #except Exception as e:
-     #   print("erreur: ", e)
+    
     
     return point
     
@@ -43,8 +47,13 @@ def lire():
     
 
 def decide_filtre():
+    """
+    DESC: Cette fonction demande à l'utilisateur quel filtre à appliquer aux données du lidar
+          
+    RETOUR: le numéro du choix de l'utilisateur
+    """
     bonChoix= False
-    while bonChoix==False:
+    while bonChoix==False:                                  #continue jusqu'à ce que l'entrée de l'utilisateur soit du bon format
         choix = input("Quel filtre vouler vous?\n" \
         "Écrire 1 pour faire un filtre de moyenne.\n" \
         "Écrire 2 pour un filtre médiane.\n"
@@ -58,6 +67,10 @@ def decide_filtre():
     return choix
 
 def ecrire(points):
+    """
+    DESC: Cette fonction prend les données filtrés et les écrit dans une bnouveau document vierge
+          
+    """
     doc = open("exemples/donnees_final", 'w')
     for p in points:
         doc.write(str(p)+"\n")
