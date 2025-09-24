@@ -77,7 +77,7 @@ def filtre_mediane(points):
 def filtre_bonne_valeur(points):
     bonV =[]
     for p in points:
-        if p!=-1:
+        if p>-1:
             bonV.append(p)
     
     return bonV

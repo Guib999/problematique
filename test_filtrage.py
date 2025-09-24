@@ -32,9 +32,9 @@ def test_filtre_min_max():
 
 def test_filtre_moyenne():
 
-    donnees = [1,2]
+    donnees = [1,-1]
     donnees2 = [3,3.5,6,9,7.2]
-    reponse=[1.5,1.5]
+    reponse=[0,0]
     reponse2=[3.2,4.2,6.2,7.4,8.1]
 
     test = filtrage.filtre_moyenne(donnees)
@@ -47,9 +47,9 @@ def test_filtre_moyenne():
 
 def test_filtre_mediane():
 
-    donnees = [1,2]
+    donnees = [1,-1]
     donnees2 = [3,3.5,6,9,7.2]
-    reponse=[1,2]
+    reponse=[1,-1]
     reponse2=[3,3.5,6,7.2,7.2]
 
     test = filtrage.filtre_mediane(donnees)
@@ -63,9 +63,7 @@ def test_filtre_mediane():
     
 
 
-#===========================================
-# Autres tests à compléter...
-#===========================================
+
 
 
 
