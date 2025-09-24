@@ -7,7 +7,7 @@ Date: jj/mm/aaaa
 
 
 #===========================================
-def filtre_min_max(points, distance_min, distance_max):
+def filtre_min_max(points, distance_min=0.5, distance_max=15):
     """
     DESC: Filtre les points en éliminant ceux qui sont hors des bornes min/max.
           Les valeurs inférieures à la borne min sont remplacées par -1.
@@ -74,5 +74,12 @@ def filtre_mediane(points):
 
     return points2
 
-print(filtre_min_max([1,50,0], 1, 10))
+def filtre_bonne_valeur(points):
+    bonV =[]
+    for p in points:
+        if p!=-1:
+            bonV.append(p)
+    
+    return bonV
+
 
