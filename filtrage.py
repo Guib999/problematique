@@ -1,8 +1,8 @@
 """
 GRO120: Module filtrage - implémentation des filtres à appliquer sur les données lidar 
 
-Auteurs: ...
-Date: jj/mm/aaaa
+Auteurs: Guillaume Larouche et Simon Côté
+Date: 24/09/2025
 """ 
 
 
@@ -16,8 +16,8 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15):
     RETOUR: Tableau de données filtrées
     """
     
-    # Code à compléter
-    for i in range(0, len(points)):
+    
+    for i in range(0, len(points)): 
         
         if points[i]<distance_min:
             points[i] = -1
@@ -29,11 +29,16 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15):
     return points
 
 
-#===========================================
-# Autres fonctions à compléter...
-#===========================================
+
 
 def filtre_moyenne(points):
+    """
+    DESC: Filtre qui change les point pour la moyenne du point en question et de ceux directement avant et après
+        dans un tableau de données 
+          
+    RETOUR: Tableau de données filtrées
+    """
+
     points2= []
     for i in range(0, len(points)):
         
@@ -42,32 +47,31 @@ def filtre_moyenne(points):
             moyenne= (points[i]+points[i+1])/2
             points2.append(round(moyenne, 1))
         elif i == len(points)-1 :
-            moyenne= (points[i]+points[i-1])/2
+            moyenne= (points[i-1]+points[i])/2
             points2.append(round(moyenne, 1))
         else:
-            moyenne= (points[i]+points[i-1]+points[i+1])/3
+            moyenne= (points[i-1]+points[i]+points[i+1])/3
             
             points2.append(round(moyenne, 1))
-
+ 
 
 
     return points2
 
 def filtre_mediane(points):
-
+    """
+    DESC: Filtre qui change les points pour la mediane du point en question et de ceux directement avant et après
+        dans un tableau de données sauf les valeurs au extrémiter qui reste pareil.
+          
+    RETOUR: Tableau de données filtrées
+    """
     points2=[]
     for i in range(0, len(points)):
         if i==0 or i==len(points)-1:
             points2.append(points[i])
         else:
             tmp =[points[i-1], points[i],points[i+1]]
-            for i in range(0, len(tmp)-1): 
-                indexMIN=i
-                for j in range(i+1, len(tmp)):
-                    if tmp[indexMIN]> tmp[j]:
-                        indexMIN= j
-
-                tmp[i], tmp[indexMIN]= tmp[indexMIN],tmp[i]     
+            tmp.sort()  
             points2.append(tmp[1])
 
 

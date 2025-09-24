@@ -8,18 +8,13 @@ GRO120: Banc de test lidar
            3. Écrire les données filtrées dans un fichier texte (sortie)
            4. Afficher les valeurs statistiques des données filtrées valides (>=0)
 
-Auteurs: ...
-Date: jj/mm/aaaa
+Auteurs: Guillaume Larouche et Simon Côté 
+Date: 24/09/2025
 """ 
 
 import sys
 import filtrage
-
-
-
-#===========================================
-# Méthode(s) à compléter...
-#===========================================
+ 
 
 def lire():
     #print(getcwd())
