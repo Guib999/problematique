@@ -40,20 +40,22 @@ def filtre_moyenne(points):
     """
 
     points2= []
-    for i in range(0, len(points)):
-        
-        
-        if i == 0 :
-            moyenne= (points[i]+points[i+1])/2              #Considère la différence de calcule entre les données 
-            points2.append(round(moyenne, 1))               #des extrémité et ceux de l'intérieur
-        elif i == len(points)-1 :
-            moyenne= (points[i-1]+points[i])/2
-            points2.append(round(moyenne, 1))
-        else:
-            moyenne= (points[i-1]+points[i]+points[i+1])/3
+    if (len(points)>1):
+        for i in range(0, len(points)):
             
-            points2.append(round(moyenne, 1))
- 
+            
+            if i == 0 :
+                moyenne= (points[i]+points[i+1])/2              #Considère la différence de calcule entre les données 
+                points2.append(round(moyenne, 1))               #des extrémité et ceux de l'intérieur
+            elif i == len(points)-1 :
+                moyenne= (points[i-1]+points[i])/2
+                points2.append(round(moyenne, 1))
+            else:
+                moyenne= (points[i-1]+points[i]+points[i+1])/3
+                
+                points2.append(round(moyenne, 1))
+    else:
+        points2=points
 
 
     return points2

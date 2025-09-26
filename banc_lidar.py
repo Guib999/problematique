@@ -87,12 +87,22 @@ def ecrire(points):
     print()
     
 def moyenne(points):
+    """
+    DESC: Cette fonction calcule la moyenne des valeurs d'un tableau
+          
+    RETOUR: Retourne la moyenne des valeurs du tableau
+    """
     total = 0
     for p in points:
         total = total+p
     return round(total/len(tmp),1)
 
 def trouver_min_max(points):
+    """
+    DESC: Cette fonction trouve la valeur minimal et maximal d'un tableau
+          
+    RETOUR: Retourne la valeur minimal et maximal du tableau
+    """
     min =50
     max=0
     for p in points:
@@ -103,6 +113,11 @@ def trouver_min_max(points):
     return [min, max]
 
 def mediane(points):
+    """
+    DESC: Cette fonction calcule la médiane d'un tableau.
+          
+    RETOUR: Retourne la médiane du tableau.
+    """
     points.sort()
     if (len(points)%2 ==1):
         return points[len(points)//2+1]
