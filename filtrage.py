@@ -21,7 +21,7 @@ def filtre_min_max(points, distance_min=0.5, distance_max=15):
         
         if points[i]<distance_min:
             points[i] = -1
-        if points[i] > distance_max:
+        elif points[i] > distance_max:
             points[i] =distance_max
     
 
@@ -88,7 +88,7 @@ def filtre_bonne_valeur(points):
     """
     bonne_valeur =[]
     for p in points:
-        if p>-1:
+        if p>0:
             bonne_valeur.append(p)
     
     return bonne_valeur
