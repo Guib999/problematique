@@ -27,7 +27,7 @@ def lire():
     """
     point=[]
     while(True):            #demande en continue à l'utilisateur un nom de fichier qui existe
-        nom=input("Quel est le nom du fichier de donner?: \n")
+        nom=input("Quel est le nom du fichier de donnée?: \n")
         
         try:                        #on vérifie que le fichier existe sans fermer le programme
             doc = open("exemples/"+nom, "r")
@@ -86,8 +86,28 @@ def ecrire(points):
     doc.close()
     print()
     
+def moyenne(points):
+    total = 0
+    for p in points:
+        total = total+p
+    return round(total/len(tmp),1)
 
+def trouver_min_max(points):
+    min =50
+    max=0
+    for p in points:
+        if p<min:
+            min=p
+        if p>max:
+            max = p
+    return [min, max]
 
+def mediane(points):
+    points.sort()
+    if (len(points)%2 ==1):
+        return points[len(points)//2+1]
+    else:
+        return (points[len(points)//2]+points[len(points)//2+1])/2
 
 if __name__ == "__main__":
     """
@@ -96,26 +116,28 @@ if __name__ == "__main__":
     test_filtrage.alltest()
     continu = True  
     points=lire()
-    while continu == True:
-        choix =decide_filtre()
-        if choix == '1':                        #applique le filtre selon le choix de l'utilisateur
-            points = filtrage.filtre_moyenne(points)
-        elif choix=='2':
-            points = filtrage.filtre_mediane(points)
-        elif choix =='3':
-            points=filtrage.filtre_min_max(points)
-        else:
-            continu = False
-            tmp = filtrage.filtre_bonne_valeur(points)
-            total = 0
-            for p in tmp:
-                total = total+p
-            ecrire(points)
-            
-            print("moyenne:", round(total/len(tmp),1))
-            print("Bonne valeur:", len(tmp))
-            print("valeur total:", len(points))
-            
+    if (points!=[]):
+        while continu == True:
+            choix =decide_filtre()
+            if choix == '1':                        #applique le filtre selon le choix de l'utilisateur
+                points = filtrage.filtre_moyenne(points)
+            elif choix=='2':
+                points = filtrage.filtre_mediane(points)
+            elif choix =='3':
+                points=filtrage.filtre_min_max(points)
+            else:
+                continu = False
+                tmp = filtrage.filtre_bonne_valeur(points)
+                ecrire(points)
+                
+                print("Valeur minimal:", trouver_min_max(tmp)[0])
+                print("Valeur maximal:", trouver_min_max(tmp)[1])
+                print("Médiane:", mediane(tmp))
+                print("moyenne:", moyenne(tmp))
+                print("Bonne valeur:", len(tmp))
+                print("valeur total:", len(points))
+    else:
+        print("Fichier vide")    
                 
 
         
