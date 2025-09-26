@@ -26,8 +26,8 @@ def test_filtre_min_max():
     test = filtrage.filtre_min_max(donnees, 1, 10)
     assert test == reponse, f"Erreur: {test} != {reponse}"
 
-    donnees = [3,3.5,15,0.5,15]                                  
-    reponse=[3,3.5,15,0.5,15]
+    donnees = [3,3.567667676767,15,0.5,15]                                  
+    reponse=[3,3.567667676767,15,0.5,15]
     test=filtrage.filtre_min_max(donnees)
     assert test == reponse, f"Erreur: {test} != {reponse}"
 
@@ -78,8 +78,13 @@ def test_filtre_moyenne():
 
     donnees = []                                  
     reponse=[]
-    test=filtrage.filtre_min_max(donnees)
+    test=filtrage.filtre_moyenne(donnees)
     assert test == reponse, f"Erreur: {test} != {reponse}"
+
+    donnees = [-1,-1,-5.927379272734,-1,-5, -4]
+    reponse=[-1,-2.6,-2.6,-4,-3.3,-4.5]
+    test = filtrage.filtre_moyenne(donnees)
+    assert test == reponse, f"Erreur: {test} != {reponse}" 
 
     pass
 
@@ -91,27 +96,31 @@ def test_filtre_mediane():
           selon les valeurs médiane
     """
 
-    donnees = [1,-1]                                             #deux tests différents
-    donnees2 = [3,3.5,6,9,7.2]
-    reponse=[1,-1]
-    reponse2=[3,3.5,6,7.2,7.2]
-
-    test = filtrage.filtre_mediane(donnees)
-    test2 = filtrage.filtre_mediane(donnees2)
-
+    donnees = [1,-1]       
+    reponse=[1,-1]      
+    test = filtrage.filtre_mediane(donnees)                                #deux tests différents
     assert test == reponse, f"Erreur: {test} != {reponse}"
-    assert test2 == reponse2, f"Erreur: {test2} != {reponse2}"
+
+    donnees = [3,3.5,6,9,7.2898998889]
+    reponse=[3,3.5,6,7.2898998889,7.2898998889]
+    test = filtrage.filtre_mediane(donnees)
+    assert test == reponse, f"Erreur: {test} != {reponse}"
     
     donnees = [3]                                  
     reponse=[3]
-    test=filtrage.filtre_min_max(donnees)
+    test=filtrage.filtre_mediane(donnees)
     assert test == reponse, f"Erreur: {test} != {reponse}"
     
     donnees = []                                  
     reponse=[]
-    test=filtrage.filtre_min_max(donnees)
+    test=filtrage.filtre_mediane(donnees)
     assert test == reponse, f"Erreur: {test} != {reponse}"
     pass
+
+    donnees = [-1,-1,-5,-1,-5, -4]
+    reponse=[-1,-1,-1,-5,-4,-4]
+    test = filtrage.filtre_mediane(donnees)
+    assert test == reponse, f"Erreur: {test} != {reponse}" 
 
 
 

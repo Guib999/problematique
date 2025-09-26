@@ -63,7 +63,7 @@ def filtre_moyenne(points):
 def filtre_mediane(points):
     """
     DESC: Filtre qui change les données du lidar pour la mediane de la donnée en question et de celle directement avant et après
-        dans un tableau de données sauf les valeurs au extrémiter qui reste pareil.
+        dans un tableau de données sauf les valeurs aux extrémités qui reste pareil.
           
     RETOUR: Tableau de données filtrées
     """
