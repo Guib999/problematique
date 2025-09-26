@@ -14,30 +14,36 @@ Date: 24/09/2025
 
 import sys
 import filtrage
+import test_filtrage
  
 
 def lire():
     """
-    DESC: Cette fonction permet de lire un document texte des données donné par le lidar.
+    DESC: Cette fonction permet de lire un document texte des données donné par le lidar. Le nom du fichier est 
+        demandé à l'utilisateur.
         
           
     RETOUR: Tableau des données du document
     """
-    nom="exemples/donnees_test.txt"
     point=[]
-    
-    doc = open(nom, "r")
-    contenu = "a"
-    while contenu !="":                     
-        contenu = doc.readline()
-        if contenu !="":
-            p = float(contenu[0:len(contenu)-1])
+    while(True):            #demande en continue à l'utilisateur un nom de fichier qui existe
+        nom=input("Quel est le nom du fichier de donner?: \n")
         
-            point.append(p)
-
-    
-    doc.close()
-    
+        try:                        #on vérifie que le fichier existe sans fermer le programme
+            doc = open("exemples/"+nom, "r")
+            contenu = "a"
+            while contenu !="":                     #lit toute les ligne du fichier
+                contenu = doc.readline()
+                if contenu !="":
+                    p = float(contenu[0:len(contenu)-1])
+                
+                    point.append(p)
+            doc.close()
+            print()
+            break
+        except FileNotFoundError:
+            print("Fichier introuvable")
+            print()
     
     return point
     
@@ -63,32 +69,36 @@ def decide_filtre():
             bonChoix = True
         else :
             print("choix mal écrit")
+        print()
 
     return choix
 
 def ecrire(points):
     """
-    DESC: Cette fonction prend les données filtrés et les écrit dans une bnouveau document vierge
+    DESC: Cette fonction prend les données filtrés et les écrit dans une nouveau document vierge. Demande à l'utilisateur 
+        le nom du fichier.
           
     """
-    doc = open("exemples/donnees_final", 'w')
+    nom = input("Quel est le nom du fichier de sortie? \n")
+    doc = open("exemples/"+nom , 'w')
     for p in points:
         doc.write(str(p)+"\n")
     doc.close()
+    print()
     
 
 
-#===========================================
+
 if __name__ == "__main__":
     """
-    DESC: Point d'entrée du programme
+    DESC: Point d'entrée du programme. Démarre toute la logique du programme
     """
-    print("Test lidar (GRO120)")
-    continu = True
+    test_filtrage.alltest()
+    continu = True  
     points=lire()
     while continu == True:
         choix =decide_filtre()
-        if choix == '1':
+        if choix == '1':                        #applique le filtre selon le choix de l'utilisateur
             points = filtrage.filtre_moyenne(points)
         elif choix=='2':
             points = filtrage.filtre_mediane(points)
@@ -100,10 +110,12 @@ if __name__ == "__main__":
             total = 0
             for p in tmp:
                 total = total+p
+            ecrire(points)
+            
             print("moyenne:", round(total/len(tmp),1))
             print("Bonne valeur:", len(tmp))
             print("valeur total:", len(points))
-            ecrire(points)
+            
                 
 
         
