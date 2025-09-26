@@ -85,9 +85,9 @@ def test_filtre_bonV() :
           avec seulement des valeurs qui peuvent être utilisé.
     """
 
-    donnees = [1,9]                                                  #deux tests différents
+    donnees = [1,9,7,8,3]                                                  #deux tests différents
     donnees2 = [-1,-1,-1,-1,-1]
-    reponse=[1,9]
+    reponse=[1,9,7,8,3]
     reponse2=[]
 
     test = filtrage.filtre_bonne_valeur(donnees)
