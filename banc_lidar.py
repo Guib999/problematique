@@ -34,9 +34,11 @@ def lire():
             contenu = "a"
             while contenu !="":                     #lit toute les ligne du fichier
                 contenu = doc.readline()
-                if contenu !="":
-                    p = float(contenu[0:len(contenu)-1])
-                
+                if contenu !="":                    
+                    if contenu[len(contenu)-1] == 'n':              #vérifie si \n à la fin de la ligne pour le retirer et avoir un float
+                        p = float(contenu[0:len(contenu)-1])
+                    else:
+                        p = float(contenu)
                     point.append(p)
             doc.close()
             print()
